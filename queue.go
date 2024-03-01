@@ -6,9 +6,24 @@ var (
 	ErrQueueEmpty = errors.New("queue is empty")
 )
 
-type Queue[T interface{}] struct {
-	Head *Node[T]
-	Tail *Node[T]
+type Queue[T comparable] struct {
+	Head   *Node[T]
+	Tail   *Node[T]
+	length int
+}
+
+// Length returns the length of the queue
+func (q *Queue[T]) Length() int {
+	return q.length
+}
+
+func NewQueue[T comparable](initValues ...T) *Queue[T] {
+	q := &Queue[T]{}
+	for _, v := range initValues {
+		q.Enqueue(v)
+	}
+	return q
+
 }
 
 // Enqueue pushes the given value to the end of the queue
@@ -21,6 +36,8 @@ func (q *Queue[T]) Enqueue(value T) {
 
 	q.Tail.Next = node
 	q.Tail = node
+
+	q.length++
 }
 
 // Dequeue retrieves the next item from the queue.
@@ -33,6 +50,8 @@ func (q *Queue[T]) Dequeue() (*T, error) {
 	}
 
 	q.Head = q.Head.Next
+	q.length--
+
 	return &node.Value, nil
 }
 
