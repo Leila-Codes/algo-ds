@@ -1,13 +1,13 @@
-package algo_ds
+package linkedlist
 
 // LinkedList implements a linked-list data structure of the given type.
 type LinkedList[T comparable] struct {
 	Head *Node[T]
 }
 
-// NewLinkedList constructs a new linked list
+// New constructs a new linked list
 // optionally can take initValues list of values to fill the list with.
-func NewLinkedList[T comparable](initValues ...T) *LinkedList[T] {
+func New[T comparable](initValues ...T) *LinkedList[T] {
 	ll := &LinkedList[T]{}
 
 	for _, v := range initValues {
@@ -54,7 +54,7 @@ func (l *LinkedList[T]) Push(values ...T) {
 func (l *LinkedList[T]) Contains(value T) (found bool) {
 	curr := l.Head
 
-	for !found && curr.Next != nil {
+	for !found && curr != nil {
 		found = curr.Value == value
 		curr = curr.Next
 	}

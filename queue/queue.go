@@ -1,4 +1,4 @@
-package algo_ds
+package queue
 
 import "errors"
 
@@ -17,27 +17,28 @@ func (q *Queue[T]) Length() int {
 	return q.length
 }
 
-func NewQueue[T comparable](initValues ...T) *Queue[T] {
+func New[T comparable](initValues ...T) *Queue[T] {
 	q := &Queue[T]{}
 	for _, v := range initValues {
 		q.Enqueue(v)
 	}
 	return q
-
 }
 
 // Enqueue pushes the given value to the end of the queue
-func (q *Queue[T]) Enqueue(value T) {
-	node := &Node[T]{Value: value}
-	if q.Head == nil {
-		q.Head = node
-		q.Tail = q.Head
+func (q *Queue[T]) Enqueue(values ...T) {
+	for _, v := range values {
+		node := &Node[T]{Value: v}
+		if q.Head == nil {
+			q.Head = node
+			q.Tail = q.Head
+		}
+
+		q.Tail.Next = node
+		q.Tail = node
+
+		q.length++
 	}
-
-	q.Tail.Next = node
-	q.Tail = node
-
-	q.length++
 }
 
 // Dequeue retrieves the next item from the queue.

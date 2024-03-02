@@ -1,4 +1,4 @@
-package algo_ds
+package queue
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -6,7 +6,7 @@ import (
 )
 
 func TestQueue_Enqueue(t *testing.T) {
-	queue := NewQueue[int]()
+	queue := New[int]()
 
 	assert.Equal(t, queue.Length(), 0)
 	assert.Nil(t, queue.Head)
@@ -20,7 +20,7 @@ func TestQueue_Enqueue(t *testing.T) {
 }
 
 func TestQueue_Dequeue(t *testing.T) {
-	queue := NewQueue[int](5, 19, 3, 7)
+	queue := New[int](5, 19, 3, 7)
 
 	assert.Equal(t, queue.Length(), 4)
 
@@ -50,7 +50,7 @@ func TestQueue_Dequeue(t *testing.T) {
 }
 
 func TestQueue_Peek(t *testing.T) {
-	queue := NewQueue[int](5, 19, 3, 7)
+	queue := New[int](5, 19, 3, 7)
 	assert.Equal(t, queue.Length(), 4)
 	item, err := queue.Peek()
 	assert.Nil(t, err)
