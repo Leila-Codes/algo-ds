@@ -10,6 +10,7 @@ The following data structures have been included.
 |Linked List|A linked list is a continuous list of items. Unlike static arrays it can dynamically grow as needed.|
 |Binary Tree|Binary tree data structure begins with a "root" node. Each node holds up to 2 children only.|
 |Queue|Similar to linked-list, but offers methods favouring FIFO workloads instead.|
+|Set|A simple wrapper over maps in Golang to store an unordered collection of unique values.|
 
 ## Algorithms
 1. Breadth-First-Search - Implemented for tree data structure to find a particular item.
