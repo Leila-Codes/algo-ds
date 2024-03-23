@@ -1,4 +1,4 @@
-module algo-ds
+module github.com/leila-codes/algo-ds
 
 go 1.21
 
